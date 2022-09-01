@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class IncomeDAO implements IncomeOperations {
     @Override
     public void addIncome(Income income) {
@@ -82,7 +81,6 @@ public class IncomeDAO implements IncomeOperations {
         }
         return incomeList;
     }
-
     @Override
     public List<Income> searchIncome(String incomeCategory) {
         List<Income> searchIncomeList=new ArrayList<>();

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class ExpenditureCategoryDAO implements ExpenditureCategoryOperations {
     @Override
-    public void addExpenditure(String expenditureName) {
+    public void addExpenditureCategory(String expenditureName) {
         Connection connection= MySQLConnection.getConnection();
         String sql="insert into expenditure_category(name) values(?)";
         try{
@@ -24,7 +24,7 @@ public class ExpenditureCategoryDAO implements ExpenditureCategoryOperations {
         }
     }
     @Override
-    public void deleteExpenditure(String expenditureName) {
+    public void deleteExpenditureCategory(String expenditureName) {
         Connection connection=MySQLConnection.getConnection();
         String sql="delete from expenditure_category where name=?";
         try{
@@ -38,7 +38,7 @@ public class ExpenditureCategoryDAO implements ExpenditureCategoryOperations {
         }
     }
     @Override
-    public void updateExpenditure(String oldExpenditureCategoryName, String updatedExpenditureCategoryName) {
+    public void updateExpenditureCategory(String oldExpenditureCategoryName, String updatedExpenditureCategoryName) {
         Connection connection=MySQLConnection.getConnection();
         String sql="update expenditure_category set name=? where name=?";
         try{
@@ -53,7 +53,7 @@ public class ExpenditureCategoryDAO implements ExpenditureCategoryOperations {
         }
     }
     @Override
-    public List<ExpenditureCategory> getAllExpenditure() {
+    public List<ExpenditureCategory> getAllExpenditureCategory() {
         Connection connection=MySQLConnection.getConnection();
         String sql="select * from expenditure_category";
         List<ExpenditureCategory> expenditureCategoryList=new ArrayList<>();
