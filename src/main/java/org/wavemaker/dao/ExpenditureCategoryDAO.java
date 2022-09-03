@@ -43,8 +43,8 @@ public class ExpenditureCategoryDAO implements ExpenditureCategoryOperations {
         String sql="update expenditure_category set name=? where name=?";
         try{
             PreparedStatement statement=connection.prepareStatement(sql);
-            statement.setString(1,oldExpenditureCategoryName);
-            statement.setString(2,updatedExpenditureCategoryName);
+            statement.setString(1,updatedExpenditureCategoryName);
+            statement.setString(2,oldExpenditureCategoryName);
             int result= statement.executeUpdate();
             System.out.println("Data Updated");
         } catch (SQLException e) {

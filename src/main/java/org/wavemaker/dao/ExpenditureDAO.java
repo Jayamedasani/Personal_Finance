@@ -67,7 +67,7 @@ public class ExpenditureDAO implements ExpenditureOperations {
     public List<Expenditure> getAllExpenditure(){
         List<Expenditure> expenditureList=new ArrayList<>();
         Connection connection=MySQLConnection.getConnection();
-        String sql="select * from expenditure";
+        String sql="select * from expenditure order by processed_date desc,processed_time desc";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
             ResultSet resultSet =statement.executeQuery();
@@ -89,7 +89,7 @@ public class ExpenditureDAO implements ExpenditureOperations {
     public List<Expenditure> searchExpenditure(String expenditureCategory) {
         List<Expenditure> searchExpenditureList=new ArrayList<>();
         Connection connection=MySQLConnection.getConnection();
-        String sql="select * from expenditure where category=?";
+        String sql="select * from expenditure where category=? order by processed_date desc,processed_time desc";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
             statement.setString(1,expenditureCategory);

@@ -27,8 +27,12 @@ public class ExpenditureCategoryServlet extends HttpServlet {
         expenditureCategoryManager.addExpenditureCategory(expenditureCategory.getName());
     }
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ExpenditureCategory expenditureCategory=objectMapper.readValue(req.getReader(),ExpenditureCategory.class);
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ExpenditureCategory expenditureCategory=objectMapper.readValue(request.getReader(),ExpenditureCategory.class);
         expenditureCategoryManager.deleteExpenditureCategory(expenditureCategory.getName());
+    }
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        expenditureCategoryManager.updateExpenditureCategory(request.getParameter("oldname"),request.getParameter("newname"));
     }
 }

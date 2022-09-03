@@ -64,7 +64,7 @@ public class IncomeDAO implements IncomeOperations {
     public List<Income> getAllIncome(){
         List<Income> incomeList=new ArrayList<>();
         Connection connection=MySQLConnection.getConnection();
-        String sql="select * from income";
+        String sql="select * from income order by processed_date desc,processed_time desc";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
             ResultSet resultSet =statement.executeQuery();
@@ -85,7 +85,7 @@ public class IncomeDAO implements IncomeOperations {
     public List<Income> searchIncome(String incomeCategory) {
         List<Income> searchIncomeList=new ArrayList<>();
         Connection connection=MySQLConnection.getConnection();
-        String sql="select * from income where category=?";
+        String sql="select * from income where category=? order by processed_date desc,processed_time desc";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
             statement.setString(1,incomeCategory);

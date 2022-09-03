@@ -28,4 +28,8 @@ public class IncomeCategoryServlet extends HttpServlet {
         IncomeCategory incomeCategory= objectMapper.readValue(request.getReader(), IncomeCategory.class);
         incomeCategoryManager.deleteIncomeCategory(incomeCategory.getName());
     }
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        incomeCategoryManager.updateIncomeCategory(request.getParameter("oldname"),request.getParameter("newname"));
+    }
 }
