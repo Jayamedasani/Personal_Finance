@@ -28,10 +28,11 @@ public class ExpenditureServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Expenditure expenditure= objectMapper.readValue(request.getReader(), Expenditure.class);
+        System.out.println(expenditure);
         expenditureManager.addExpenditure(expenditure);
     }
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         Expenditure expenditure=objectMapper.readValue(request.getReader(),Expenditure.class);
         expenditureManager.deleteExpenditure(expenditure);
     }

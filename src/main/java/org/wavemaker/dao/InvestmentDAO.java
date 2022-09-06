@@ -27,7 +27,7 @@ public class InvestmentDAO implements InvestmentOperations {
             System.out.println(result+"rows effected");
         } catch (SQLException e) {
             System.out.println("can't add investment");
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

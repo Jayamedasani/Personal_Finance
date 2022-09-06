@@ -44,4 +44,36 @@
         <servlet-name>SavingsServlet</servlet-name>
         <url-pattern>/savings/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>InvestmentServlet</servlet-name>
+        <servlet-class>org.wavemaker.servlet.InvestmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvestmentServlet</servlet-name>
+        <url-pattern>/investments/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InvestmentCategoryServlet</servlet-name>
+        <servlet-class>org.wavemaker.servlet.InvestmentCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvestmentCategoryServlet</servlet-name>
+        <url-pattern>/investmentcategories/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DependentServlet</servlet-name>
+        <servlet-class>org.wavemaker.servlet.DependentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DependentServlet</servlet-name>
+        <url-pattern>/dependents/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BalanceServlet</servlet-name>
+        <servlet-class>org.wavemaker.servlet.BalanceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BalanceServlet</servlet-name>
+        <url-pattern>/dashboards/*</url-pattern>
+    </servlet-mapping>
 </web-app>
