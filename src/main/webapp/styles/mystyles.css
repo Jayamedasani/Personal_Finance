@@ -3,17 +3,70 @@
     height:50px;
 }
 body{
-    margin:50px;
-    padding:0;
-  background: url(images/bodybg.jpg) no-repeat ;
-  background-size: cover;
+    background-image: url("../images/bgnew1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-size:contain;*/
+}
+#bodymain{
+  margin:50px;
+  padding:20px;
   border-radius:10px;
   font-family:"AirbnbCerealMedium";
-  text-color:#6e6f7d;
-}
+  color:#6e6f7d;
 
+}
+#navmain{
+    border-radius: 10px;
+        margin: 50px;
+      font-family:"AirbnbCerealMedium";
+      color:#6e6f7d;
+}
+#navmain a{
+color:#6e6f7d;
+}
+#sidebarmain{
+border-right:1px solid #6e6f7d;
+}
+#sidebarmain nav a{
+color:#6e6f7d;
+}
 #sidebarmain nav a:hover{
     background:white;
     border:5px;
     color:#2d8bfe;
+    border-radius:10px;
+}
+#userimg{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+#logo{
+    color:#6e6f7d;
+    font-size: large;
+    font-weight: bold;
+}
+#grid1{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border-radius:3%;
+}
+#grid2{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border-radius:3%;
+}
+#grid3{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border-radius:3%;
+}
+#grid1:hover{
+    border:1px solid blue;
+
+}
+#grid2:hover{
+    border:1px solid blue;
+}
+#grid3:hover{
+    border:1px solid blue;
 }

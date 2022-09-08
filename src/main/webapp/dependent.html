@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Dependent</title>
-    <script src="script/dependent.js"></script>
-    <link rel="stylesheet" href="styles/dependent.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wallet</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/dependent.css">
+    <script src="script/dependent.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <body onload="getDependents()">
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid row">
-            <a class="navbar-brand col-4 fs-3 text-success" href="index.html">
-                <img class="brandlogo" src="images/brand.png" alt="brandlogo" />Wallet
-            </a>
-            <div class="col-8 d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-md btn-outline-primary btn-transparent d-flex">Search<span
-                        class="bi bi-search ps-1"></span></button>
-            </div>
+<nav class="navbar navbar-expand-lg shadow bg-white" id="navmain">
+    <div class="container-fluid row">
+        <a class="navbar-brand col-4 fs-3" href="index.html">
+            <img class="brandlogo" src="images/brand.png" alt="brandlogo" />Wallet
+        </a>
+        <div class="col-8 d-flex text-end">
+            <h3 class="">Jayalakshmi</h3>
+            <button type="button" class="btn btn-transparent" onclick="getMonthlyReport()"><img class="" id="userimg" src="images/jaya.jpg" alt="userimage"/></button>
         </div>
-    </nav>
-    <div class="row ps-2">
-        <div class="col-2">
+    </div>
+</nav>
+<div class=" shadow  bg-white rounded bg-transparent" id="bodymain">
+    <div class="row ps-2 mx-2">
+        <div class="col-2 ps-1 bg-transparent" id="sidebarmain">
             <nav class="nav flex-column fs-5">
-                <a class="nav-link pb-3" href="index.html"><span class="bi bi-house-door pe-2"></span>Home</a>
-                <a class="nav-link pb-3" href="income.html"><span
-                        class='bi bi-arrow-down-left-circle-fill pe-2'></span>Income</a>
-                <a class="nav-link pb-3" href="expenditure.html"><span
-                        class='bi bi-arrow-up-right-circle-fill pe-2'></span>Expenditure</a>
+                <a class="nav-link pb-3 " href="index.html"><span
+                        class="bi bi-house-door pe-2"></span>Home</a>
+                <a class="nav-link pb-3" href="income.html"><span class='bi bi-arrow-down-left-circle-fill pe-2'></span>Income</a>
+                <a class="nav-link pb-3" href="expenditure.html"><span class='bi bi-arrow-up-right-circle-fill pe-2'></span>Expenditure</a>
                 <a class="nav-link pb-3" href="savings.html"><span class='bi bi-piggy-bank pe-2'></span>Savings</a>
                 <a class="nav-link pb-3" href="dashboard.html"><span class='bi bi-bar-chart-fill pe-2'></span>Dashboard</a>
                 <a class="nav-link pb-3" href="categories.html"><span class='bi bi-card-list pe-2'></span>Categories</a>
@@ -39,7 +40,7 @@
             </nav>
         </div>
         <div class="col-10">
-            <div id="formmain" class="m-3 shadow p-3 mb-5 me-3 bg-body rounded" style=" ">
+            <div id="formmain" class="m-3 shadow p-3 mb-5 me-3 bg-body rounded" style="display:none ">
                 <form id="formDependent" >
                     <div class="mb-3">
                         <label for="dependentName" class="form-label pe-3">Name:</label>
@@ -78,13 +79,44 @@
                         <h4>Dependent List</h4>
                     </div>
                     <div class="col-6 text-end bg-white">
-<!--                        <button type="button" class="btn btn-md btn-outline-warning" onclick="addDependent()">Add Dependent</button>-->
+                        <button type="button" class="btn btn-md btn-outline-primary" onclick="addDependent()">Add Dependent</button>
                     </div>
+                </div>
+                <div class="table-responsive py-5 ">
+
+                    <table class="table table-hover ">
+
+                        <thead class="">
+                        <tr>
+                            <th scope="col">S.No</th>
+                            <th scope="col">Dependent Name</th>
+                            <th scope="col">Dependent Relation</th>
+                            <th scope="col">Dependent Email</th>
+                            <th scope="col">Dependent DOB</th>
+                            <th scope="col">Dependent PhnNo</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableDependentData" >
+
+                        </tbody>
+
+
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("1rzM6lv9hj6EFg2SP");
+   })();
+</script>
 </body>
 
 </html>

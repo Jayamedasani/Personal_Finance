@@ -1,5 +1,5 @@
 function getIncome() {
-    const url = "http://localhost:8080/income/incomes";
+    const url = "http://localhost:8080/Personal_Finance/incomes";
     async function getapi(url) {
         const response = await fetch(url);
         var data = await response.json();
@@ -8,38 +8,28 @@ function getIncome() {
     }
     getapi(url);
     function show(data) {
-        var divExpenditure = document.createElement("div");
-        var main = document.getElementById("main");
-        var span = document.createElement("span");
-        var p = document.createElement("p");
-        var h5 = document.createElement("h5");
-        var h4 = document.createElement("h4");
-        main.appendChild(divExpenditure);
+        const tdBody = document.getElementById('tableDataContainer');
+        for(let i=0;i<data.length;i++){
 
-        for (let i = 0; i < data.length; i++) {
-            divExpenditure = document.createElement("div");
-            main.appendChild(divExpenditure);
-            span = document.createElement("span");
-            span.className = 'bi bi-arrow-down-right-circle-fill';
-            divExpenditure.appendChild(span);
-            p = document.createElement("p");
-            p.innerHTML = data[i]['name'];
-            divExpenditure.appendChild(p);
-            h5 = document.createElement("h5");
-            h5.innerHTML = data[i]['category'];
-            divExpenditure.appendChild(h5);
-            h4 = document.createElement("h4");
-            h4.innerHTML = data[i]['amount'];
-            divExpenditure.appendChild(h4);
-            h6 = document.createElement("h6");
-            h6.innerHTML = data[i]['processedDate'];
-            divExpenditure.appendChild(h6);
-            h6 = document.createElement("h6");
-            h6.innerHTML = data[i]['processedTime'];
-            divExpenditure.appendChild(h6);
+                          console.log(data[i]);
+                          let currentValue = data[i]['id'];
+            let content = `
+                          <tr  scope="row" >
+                          <td > ${i+1}   </td>
+                          <td > ${data[i]['name']}   </td>
+                          <td > ${data[i]['category']}   </td>
+                          <td > ${data[i]['amount']}   </td>
+                          <td > ${data[i]['processedDate']}   </td>
+                          <td > ${data[i]['processedTime']}   </td>
+                          <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateIncome(${data[i]})"></span> </td>
+                          <td>
+                          <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncome(${currentValue})"></span>
+                          </td>
+                          </tr>
 
+            `
+                tdBody.innerHTML += content;
         }
-
     }
 
 }
@@ -72,8 +62,40 @@ function submitIncome() {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/income/incomes", requestOptions)
+    fetch("http://localhost:8080/Personal_Finance/incomes", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+}
+
+function deleteIncome(data){
+    var raw = "";
+
+    var requestOptions = {
+      method: 'DELETE',
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch(`http://localhost:8080/Personal_Finance/incomes?id=${data}`, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+}
+function getMonthlyReport(){
+const url = "http://localhost:8080/Personal_Finance/savings";
+var message;
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            var data1=data[1];
+            console.log(data1);
+            var data2=data[2];
+            var data3=data[3];
+            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+        }
+        getapi(url);
+        console.log(message);
+    emailjs.send("service_35nruh8","template_o17xhco",{
+    message: "hii",
+    });
 }

@@ -1,6 +1,6 @@
 function getCategories() {
-    const expenditureurl = "http://localhost:8080/income/expenditurecategories";
-    const incomeurl = "http://localhost:8080/income/incomecategories";
+    const expenditureurl = "http://localhost:8080/Personal_Finance/expenditurecategories";
+    const incomeurl = "http://localhost:8080/Personal_Finance/incomecategories";
      function getapiIncome(incomeurl) {
         fetch(incomeurl, {
             method: "GET",
@@ -12,14 +12,19 @@ function getCategories() {
             return response.json();
         })
             .then(data => {
-                console.log(data);
-                var incomecategory=document.getElementById("incomecategory");
-                var h4=document.createElement("h4");
-                for(let i=0;i<data.length;i++){
-                    h4=document.createElement("h4");
-                    h4.innerHTML=data[i]['name'];
-                    incomecategory.appendChild(h4);
-                }
+               const tdBody = document.getElementById('tableIncomeCategory');
+                                               for(let i=0;i<data.length;i++){
+                                                   let content = `
+                                                                 <tr  scope="row" >
+                                                                 <td > ${i+1}   </td>
+                                                                 <td > ${data[i]['name']}   </td>
+                                                                 <td>
+                                                                 <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncomeCategory(${data[i]})"></span>
+                                                                 </td>
+                                                                 </tr>`
+                                                                 console.log(content);
+                                                       tdBody.innerHTML += content;
+                                               }
             })
             .catch(function (error) {
                 console.log(error);
@@ -37,14 +42,19 @@ function getCategories() {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
-                var incomecategory=document.getElementById("expenditurecategory");
-                var h4=document.createElement("h4");
-                for(let i=0;i<data.length;i++){
-                    h4=document.createElement("h4");
-                    h4.innerHTML=data[i]['name'];
-                    incomecategory.appendChild(h4);
-                }
+                const tdBody = document.getElementById('tableExpenditureCategory');
+                                for(let i=0;i<data.length;i++){
+                                    let content = `
+                                                  <tr  scope="row" >
+                                                  <td > ${i+1}   </td>
+                                                  <td > ${data[i]['name']}   </td>
+                                                  <td>
+                                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteExpenditureCategory(${data[i]})"></span>
+                                                  </td>
+                                                  </tr>`
+                                                  console.log(content);
+                                        tdBody.innerHTML += content;
+                                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -75,7 +85,7 @@ function submitIncomeCategory(){
       redirect: 'follow'
     };
 debugger;
-    fetch("http://localhost:8080/income/incomecategories", requestOptions)
+    fetch("http://localhost:8080/Personal_Finance/incomecategories", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -95,8 +105,26 @@ function submitExpenditureCategory(){
       redirect: 'follow'
     };
 debugger;
-    fetch("http://localhost:8080/income/expenditurecategories", requestOptions)
+    fetch("http://localhost:8080/Personal_Finance/expenditurecategories", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+}
+function getMonthlyReport(){
+const url = "http://localhost:8080/Personal_Finance/savings";
+var message;
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            var data1=data[1];
+            console.log(data1);
+            var data2=data[2];
+            var data3=data[3];
+            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+        }
+        getapi(url);
+        console.log(message);
+    emailjs.send("service_35nruh8","template_o17xhco",{
+    message: "hii",
+    });
 }

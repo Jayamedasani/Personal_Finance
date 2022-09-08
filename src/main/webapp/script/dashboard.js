@@ -3,7 +3,7 @@ getExpenditureDashboard();
 getIncomeDashboard();
 }
 function getExpenditureDashboard(){
-    const url="http://localhost:8080/income/dashboards?month=09&year=2022&name=expenditure";
+    const url="http://localhost:8080/Personal_Finance/dashboards?month=09&year=2022&name=expenditure";
         async function getapi(url) {
             const response = await fetch(url);
             var data = await response.json();
@@ -45,7 +45,7 @@ function getExpenditureDashboard(){
     }
 }
 function getIncomeDashboard(){
-    const url="http://localhost:8080/income/dashboards?month=08&year=2022&name=income";
+    const url="http://localhost:8080/Personal_Finance/dashboards?month=08&year=2022&name=income";
         async function getapi(url) {
             const response = await fetch(url);
             var data = await response.json();
@@ -85,4 +85,22 @@ function getIncomeDashboard(){
           }
         });
     }
+}
+function getMonthlyReport(){
+const url = "http://localhost:8080/Personal_Finance/savings";
+var message;
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            var data1=data[1];
+            console.log(data1);
+            var data2=data[2];
+            var data3=data[3];
+            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+        }
+        getapi(url);
+        console.log(message);
+    emailjs.send("service_35nruh8","template_o17xhco",{
+    message: "hii",
+    });
 }

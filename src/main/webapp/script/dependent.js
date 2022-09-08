@@ -1,5 +1,5 @@
 function getDependents(){
-    const url="http://localhost:8080/income/dependents";
+    const url="http://localhost:8080/Personal_Finance/dependents";
     async function getapi(url) {
         const response = await fetch(url);
         var data = await response.json();
@@ -8,7 +8,25 @@ function getDependents(){
     }
     getapi(url);
     function show(data){
-        var divExpenditure=document.createElement("div");
+        const tdBody = document.getElementById('tableDependentData');
+                for(let i=0;i<data.length;i++){
+                    let content = `
+                                  <tr  scope="row" >
+                                  <td > ${i+1}   </td>
+                                  <td > ${data[i]['name']}   </td>
+                                  <td > ${data[i]['relation']}   </td>
+                                  <td > ${data[i]['email']}   </td>
+                                  <td > ${data[i]['dob']}   </td>
+                                  <td > ${data[i]['phnno']}   </td>
+                                  <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateIncome(${data[i]})"></span> </td>
+                                  <td>
+                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncome(${data[i]})"></span>
+                                  </td>
+                                  </tr>`
+                                  console.log(content);
+                        tdBody.innerHTML += content;
+                }
+        /*var divExpenditure=document.createElement("div");
         var main=document.getElementById("main");
         var span=document.createElement("span");
         var p=document.createElement("p");
@@ -38,7 +56,7 @@ function getDependents(){
             h6.innerHTML = data[i]['dob'];
             divExpenditure.appendChild(h6);
 
-        }
+        }*/
         
     }
     
@@ -65,8 +83,26 @@ console.log(raw);
       redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/income/dependents", requestOptions)
+    fetch("http://localhost:8080/Personal_Finance/dependents", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+}
+function getMonthlyReport(){
+const url = "http://localhost:8080/Personal_Finance/savings";
+var message;
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            var data1=data[1];
+            console.log(data1);
+            var data2=data[2];
+            var data3=data[3];
+            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+        }
+        getapi(url);
+        console.log(message);
+    emailjs.send("service_35nruh8","template_o17xhco",{
+    message: "hii",
+    });
 }

@@ -28,13 +28,12 @@ public class IncomeDAO implements IncomeOperations {
         }
     }
     @Override
-    public void deleteIncome(Income income){
+    public void deleteIncome(int id){
         Connection connection=MySQLConnection.getConnection();
-        String sql="delete from income where processed_date=? and processed_time=?";
+        String sql="delete from income where id=?";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
-            statement.setString(1,income.getProcessedDate());
-            statement.setString(2,income.getProcessedTime());
+            statement.setInt(1,id);
             int result= statement.executeUpdate();
             System.out.println(result+"rows effected");
         } catch (SQLException e) {
@@ -45,14 +44,13 @@ public class IncomeDAO implements IncomeOperations {
     @Override
     public void updateIncome(Income income){
         Connection connection=MySQLConnection.getConnection();
-        String sql="update income set name=?, amount=?, category=? where processed_date=? and processed_time=?";
+        String sql="update income set name=?, amount=?, category=? where id=?";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
             statement.setString(1,income.getName());
             statement.setInt(2,income.getAmount());
             statement.setString(3, income.getCategory());
-            statement.setString(4,income.getProcessedDate());
-            statement.setString(5,income.getProcessedTime());
+            statement.setInt(4,income.getId());
             int result=statement.executeUpdate();
             System.out.println(result+"rows effected");
         } catch (SQLException e) {
@@ -69,12 +67,13 @@ public class IncomeDAO implements IncomeOperations {
             PreparedStatement statement= connection.prepareStatement(sql);
             ResultSet resultSet =statement.executeQuery();
             while(resultSet.next()){
+                int id= resultSet.getInt("id");
                 String name= resultSet.getString("name");
                 String category=resultSet.getString("category");
                 int amount=resultSet.getInt("amount");
                 String processedDate=resultSet.getString("processed_date");
                 String processedTime=resultSet.getString("processed_time");
-                incomeList.add(new Income(name,category,amount,processedDate,processedTime));
+                incomeList.add(new Income(id,name,category,amount,processedDate,processedTime));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -91,12 +90,13 @@ public class IncomeDAO implements IncomeOperations {
             statement.setString(1,incomeCategory);
             ResultSet resultSet=statement.executeQuery();
             while(resultSet.next()){
+                int id=resultSet.getInt("id");
                 String name= resultSet.getString("name");
                 String category=resultSet.getString("category");
                 int amount=resultSet.getInt("amount");
                 String processedDate=resultSet.getString("processed_date");
                 String processedTime=resultSet.getString("processed_time");
-                searchIncomeList.add(new Income(name,category,amount,processedDate,processedTime));
+                searchIncomeList.add(new Income(id,name,category,amount,processedDate,processedTime));
             }
         } catch (SQLException e) {
             System.out.println("Can't search");

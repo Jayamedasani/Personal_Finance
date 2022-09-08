@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 public class SavingsServlet extends HttpServlet {
     private ObjectMapper objectMapper = new ObjectMapper();
     private SavingsOperations savingManager=new SavingsDAO();
@@ -24,7 +26,7 @@ public class SavingsServlet extends HttpServlet {
             response.getWriter().write(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(savingsMap));
         }
         else{
-            int balance=savingManager.getCurrentBalance();
+            Map<Integer,Integer> balance=savingManager.getCurrentBalance();
             response.getWriter().write(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(balance));
         }
     }

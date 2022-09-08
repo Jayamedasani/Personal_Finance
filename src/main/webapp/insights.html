@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wallet</title>
+    <title>Insights</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/savings.css">
-    <script src="script/savings.js"></script>
+    <link rel="stylesheet" href="styles/insight.css">
+    <script src="script/insights.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
-<body  onload="getSavings()">
+<body onload="getInsight()">
 <nav class="navbar navbar-expand-lg shadow bg-white" id="navmain">
     <div class="container-fluid row">
         <a class="navbar-brand col-4 fs-3" href="index.html">
@@ -23,7 +22,7 @@
         </div>
     </div>
 </nav>
-<div class=" shadow bg-white rounded bg-transparent " id="bodymain">
+<div class=" shadow bg-white rounded bg-transparent py-3" id="bodymain">
     <div class="row ps-2 mx-2">
         <div class="col-2 ps-1 bg-transparent" id="sidebarmain">
             <nav class="nav flex-column fs-5">
@@ -40,13 +39,22 @@
             </nav>
         </div>
         <div class="col-10">
-            <div class="p-5 m-3 shadow bg-white rounded">
-            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            <div class="p-5 mx-5 shadow p-3 mb-5 me-3 bg-body rounded">
+                <form>
+                    <div class=" forminsights text-center">
+                        <label for="retiredYear" class="form-label pb-5">Year:</label>
+                        <input type="number" class="from-control" id="retiredYear" placeholder="Retirement Year"/>
+                        <span><button class="btn btn-sm btn-outline-primary" onclick="getInsight()" >View Report</button></span>
+                    </div>
+                </form>
+                <canvas id="myChartInsights" style="width:100%;max-width:600px"></canvas>
             </div>
+
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
 </script>
@@ -56,3 +64,4 @@
    })();
 </script>
 </body>
+</html>

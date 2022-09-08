@@ -3,40 +3,52 @@
     height:50px;
 }
 body{
-    margin:50px;
-    padding:0;
-  background: url(images/bodybg.jpg) no-repeat ;
-  background-size: cover;
+    background-image: url("../images/bgnew1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-size:contain;*/
+}
+#bodymain{
+  margin:50px;
+  padding:20px;
   border-radius:10px;
   font-family:"AirbnbCerealMedium";
-  text-color:#6e6f7d;
-}
+  color:#6e6f7d;
 
+}
+#navmain{
+    border-radius: 10px;
+        margin: 50px;
+      font-family:"AirbnbCerealMedium";
+      color:#6e6f7d;
+}
+#navmain a{
+color:#6e6f7d;
+}
+#sidebarmain{
+border-right:1px solid #6e6f7d;
+}
+#sidebarmain nav a{
+color:#6e6f7d;
+}
 #sidebarmain nav a:hover{
     background:white;
     border:5px;
     color:#2d8bfe;
+    border-radius:10px;
+}
+#userimg{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+#logo{
+    color:#6e6f7d;
+    font-size: large;
+    font-weight: bold;
 }
 #formmain{
     margin: auto;
     
-}
-#expendituremain div:nth-child(even){
-    padding: 1px;
-    background-color: rgb(161, 223, 241);
-    color:white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#expendituremain div:nth-child(odd){
-    padding: 1px;
-    background-color: white;
-    color:rgb(161, 223, 241);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#main div{
-    font-size: large;
 }

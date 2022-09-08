@@ -23,5 +23,9 @@ public class BalanceServlet extends HttpServlet {
             Map<String, Integer> expenditureMap = balanceManager.getMonthIncome(Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")));
             response.getWriter().write(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expenditureMap));
         }
+        else if(request.getParameter("month")==null){
+            Map<Integer,String> expenditureMap = balanceManager.getMonthMaxExpenditure( Integer.parseInt(request.getParameter("year")));
+            response.getWriter().write(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expenditureMap));
+        }
     }
 }

@@ -17,9 +17,9 @@ public class Main {
 //        for (Dependent dependent:list){
 //            System.out.println(dependent);
 //        }
-        Map<String,Integer> map=new HashMap<>();
+        Map<Integer,String> map=new HashMap<>();
         BalanceDAO balanceDAO=new BalanceDAO();
-        map=balanceDAO.getMonthExpenditure(8,2022);
+        map=balanceDAO.getMonthMaxExpenditure(2022);
         System.out.println(map);
     }
 }

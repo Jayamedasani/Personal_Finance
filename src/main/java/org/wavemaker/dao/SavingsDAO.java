@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
+
 public class SavingsDAO implements SavingsOperations {
     @Override
     public int getBalanceInMonth(int monthNumber, int yearNumber) {
@@ -17,7 +19,8 @@ public class SavingsDAO implements SavingsOperations {
         return result;
     }
     @Override
-    public int getCurrentBalance() {
+    public Map<Integer,Integer> getCurrentBalance() {
+        Map<Integer,Integer> result=new HashMap<>();
         LocalDateTime current = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
         String currentMonth = current.format(formatter);
@@ -33,7 +36,10 @@ public class SavingsDAO implements SavingsOperations {
         int year=Integer.parseInt(currentYear);
         int income=getIncome(month,year);
         int expenditure=getExpenditure(month,year);
-        int result=income-expenditure;
+        result.put(1,income);
+        result.put(2,expenditure);
+        int balance=income-expenditure;
+        result.put(3,balance);
         return result;
     }
     @Override

@@ -30,8 +30,8 @@ public class IncomeServlet extends HttpServlet {
     }
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Income income=objectMapper.readValue(request.getReader(),Income.class);
-        incomeManager.deleteIncome(income);
+        int id=Integer.parseInt(request.getParameter("id"));
+        incomeManager.deleteIncome(id);
     }
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
