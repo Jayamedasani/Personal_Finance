@@ -14,23 +14,23 @@ body{
   padding:20px;
   border-radius:10px;
   font-family:"AirbnbCerealMedium";
-  color:#6e6f7d;
+ /* color:#6e6f7d;*/
 
 }
 #navmain{
     border-radius: 10px;
         margin: 50px;
       font-family:"AirbnbCerealMedium";
-      color:#6e6f7d;
+      /*color:#6e6f7d;*/
 }
 #navmain a{
-color:#6e6f7d;
+/*color:#6e6f7d;*/
 }
 #sidebarmain{
 border-right:1px solid #6e6f7d;
 }
 #sidebarmain nav a{
-color:#6e6f7d;
+color:black;
 }
 #sidebarmain nav a:hover{
     background:white;
@@ -44,7 +44,7 @@ height:50px;
 border-radius:50%;
 }
 #logo{
-    color:#6e6f7d;
+   /* color:#6e6f7d;*/
     font-size: large;
     font-weight: bold;
 }

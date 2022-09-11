@@ -1,45 +1,7 @@
 function getInsight(){
-var xValues = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "oct", "Nov", "Dec"];
-var currentYear;
-if((document.getElementById("retiredYear").value)!=null){
- currentYear=document.getElementById("retiredYear").value;
-}
-else {
 var today = new Date();
-currentYear=today.getFullYear();
-}
-console.log(currentYear);
-var yValues=[];
-
-console.log(getValue(currentYear));
-new Chart("myChartInsights", {
-  type: "line",
-  title:{
-  		text: "Current Year Savings ReachOut"
-  	},
-  data: {
-    labels: xValues,
-    datasets: [{
-
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    }, {
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "green",
-      fill: false
-    }, {
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-function getValue(year){
-var currentYear=year;
+var currentYear=today.getFullYear();
+console.log( currentYear);
 const url=`http://localhost:8080/Personal_Finance/savings?year=${currentYear}`;
 console.log(url);
     async function getapi(url) {
@@ -49,14 +11,13 @@ console.log(url);
         show(data);
     }
     getapi(url);
+}
    function show(data){
+   var yValues=[];
     var yValue=[];
     for(let i=1;i<=12;i++){
         yValue.push(data[i]);
     }
-    console.log(yValue);
-    var yValues=[];
-
     for(let value of yValue){
         if(value<0){
             yValues.push(0);
@@ -65,10 +26,52 @@ console.log(url);
             yValues.push(value);
         }
     }
-    console.log(yValue);
-    return yValues;
+    var monthlyAmount=getMonthSavingValue();
+    var yValuesfixed=[];
+    for(let i=0;i<12;i++){
+        yValuesfixed.push(monthlyAmount);
+    }
+    var xValues = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "oct", "Nov", "Dec"];
+
+    new Chart("myChartInsights", {
+      type: "line",
+      title:{
+      		text: "Current Year Savings ReachOut"
+      	},
+      data: {
+        labels: xValues,
+        datasets: [{
+          data: yValues,
+          borderColor: "red",
+          fill: false
+        }, {
+          data: yValuesfixed,
+          borderColor: "green",
+          fill: false
+        }]
+      },
+      options: {
+        legend: {display: false}
+      }
+    });
 }
+
+function getMonthSavingValue(){
+console.log("called");
+var currentYear=document.getElementById('retiredYear').value;
+if(currentYear == ''){
+var balanceYear=2040-2022;
+var amount=1000000;
+var monthlyAmount=amount/(balanceYear*12);
+return monthlyAmount;
 }
+console.log(currentYear);
+var balanceYear=currentYear-2022;
+console.log(balanceYear);
+var amount=document.getElementById("retirementAmount").value;
+var monthlyAmount=amount/(balanceYear*12);
+console.log(monthlyAmount);
+return monthlyAmount;
 }
 function getMonthlyReport(){
 const url = "http://localhost:8080/Personal_Finance/savings";
@@ -77,14 +80,31 @@ var message;
             const response = await fetch(url);
             var data = await response.json();
             var data1=data[1];
-            console.log(data1);
             var data2=data[2];
             var data3=data[3];
-            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+            message="Current Month Income: ";
+            message+= data1 ;
+            message+=" Current Month Expenditure: ";
+            message+= data2 ;
+            message+=" Current Month Balance: ";
+            message+= data3 ;
+            console.log(message);
+            emailjs.send("service_35nruh8","template_o17xhco",{
+                message: message });
+                getToast();
         }
         getapi(url);
-        console.log(message);
-    emailjs.send("service_35nruh8","template_o17xhco",{
-    message: "hii",
-    });
+}
+function getReport(){
+    var Val = confirm("Get Monthly Report To EMail?");
+                    if( Val == true ){
+                        getMonthlyReport();
+                    }
+}
+function getToast() {
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
+  toastList.forEach(toast => toast.show())
 }

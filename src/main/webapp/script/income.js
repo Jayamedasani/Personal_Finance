@@ -35,6 +35,7 @@ function getIncome() {
 }
 function addIncome() {
     document.getElementById('formmain').style.display = 'block';
+    document.getElementById('datamain').style.display='none';
 }
 function submitIncome() {
     var myHeaders = new Headers();
@@ -80,6 +81,9 @@ function deleteIncome(data){
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+      var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 function getMonthlyReport(){
 const url = "http://localhost:8080/Personal_Finance/savings";
@@ -88,14 +92,31 @@ var message;
             const response = await fetch(url);
             var data = await response.json();
             var data1=data[1];
-            console.log(data1);
             var data2=data[2];
             var data3=data[3];
-            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+            message="Current Month Income: ";
+            message+= data1 ;
+            message+=" Current Month Expenditure: ";
+            message+= data2 ;
+            message+=" Current Month Balance: ";
+            message+= data3 ;
+            console.log(message);
+            emailjs.send("service_35nruh8","template_o17xhco",{
+                message: message });
+                getToast();
         }
         getapi(url);
-        console.log(message);
-    emailjs.send("service_35nruh8","template_o17xhco",{
-    message: "hii",
-    });
+}
+function getReport(){
+    var Val = confirm("Get Monthly Report To EMail?");
+                    if( Val == true ){
+                        getMonthlyReport();
+                    }
+}
+function getToast() {
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
+  toastList.forEach(toast => toast.show())
 }

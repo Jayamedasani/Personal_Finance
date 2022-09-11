@@ -1,9 +1,13 @@
 window.onload=function(){
+getDashboard();
+}
+function getDashboard(){
 getExpenditureDashboard();
 getIncomeDashboard();
-}
 function getExpenditureDashboard(){
+
     const url="http://localhost:8080/Personal_Finance/dashboards?month=09&year=2022&name=expenditure";
+
         async function getapi(url) {
             const response = await fetch(url);
             var data = await response.json();
@@ -44,22 +48,25 @@ function getExpenditureDashboard(){
         });
     }
 }
-function getIncomeDashboard(){
-    const url="http://localhost:8080/Personal_Finance/dashboards?month=08&year=2022&name=income";
+async function getIncomeDashboard(){
+    const url="http://localhost:8080/Personal_Finance/dashboards?month=09&year=2022&name=income";
         async function getapi(url) {
-            const response = await fetch(url);
-            var data = await response.json();
-            console.log(data);
-            show(data);
-        }
+                    const response = await fetch(url);
+                    var data = await response.json();
+                    console.log(data);
+                    show(data);
+                }
         getapi(url);
     function show(data){
+    console.log("called");
         var xValues=[];
         var yValues=[];
         for(let month in data){
             xValues.push(month);
             yValues.push(data[month]);
         }
+        console.log(yValues);
+        console.log(xValues);
         var barColors = [
           "#b91d47",
           "#00aba9",
@@ -86,6 +93,7 @@ function getIncomeDashboard(){
         });
     }
 }
+}
 function getMonthlyReport(){
 const url = "http://localhost:8080/Personal_Finance/savings";
 var message;
@@ -93,14 +101,31 @@ var message;
             const response = await fetch(url);
             var data = await response.json();
             var data1=data[1];
-            console.log(data1);
             var data2=data[2];
             var data3=data[3];
-            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+            message="Current Month Income: ";
+            message+= data1 ;
+            message+=" Current Month Expenditure: ";
+            message+= data2 ;
+            message+=" Current Month Balance: ";
+            message+= data3 ;
+            console.log(message);
+            emailjs.send("service_35nruh8","template_o17xhco",{
+                message: message });
+                getToast();
         }
         getapi(url);
-        console.log(message);
-    emailjs.send("service_35nruh8","template_o17xhco",{
-    message: "hii",
-    });
+}
+function getReport(){
+    var Val = confirm("Get Monthly Report To EMail?");
+                    if( Val == true ){
+                        getMonthlyReport();
+                    }
+}
+function getToast() {
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
+  toastList.forEach(toast => toast.show())
 }

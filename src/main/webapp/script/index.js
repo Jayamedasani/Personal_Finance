@@ -19,16 +19,20 @@ var message;
             const response = await fetch(url);
             var data = await response.json();
             var data1=data[1];
-            console.log(data1);
             var data2=data[2];
             var data3=data[3];
-            message=`Current Month Income: ${data1}  Your Expenditure is:  ${data2} Balance Amount is: ${data3}`;
+            message="Current Month Income: ";
+            message+= data1 ;
+            message+=" Current Month Expenditure: ";
+            message+= data2 ;
+            message+=" Current Month Balance: ";
+            message+= data3 ;
+            console.log(message);
+            emailjs.send("service_35nruh8","template_o17xhco",{
+                message: message });
+                getToast();
         }
         getapi(url);
-        console.log(message);
-    emailjs.send("service_35nruh8","template_o17xhco",{
-    message: "hii",
-    });
 }
     /*Email.send({
             Host: "smtp.gmail.com",
@@ -42,3 +46,16 @@ var message;
             .then(function (message) {
               alert("mail sent successfully")
             });*/
+function getReport(){
+    var Val = confirm("Get Monthly Report To EMail?");
+                if( Val == true ){
+                    getMonthlyReport();
+                }
+}
+function getToast() {
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
+  toastList.forEach(toast => toast.show())
+}

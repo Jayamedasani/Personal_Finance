@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLConnection {
-    private static String host = "jdbc:mysql://localhost:3306/personalfinance";
+    private static String host = "jdbc:mysql://18.217.214.158:3306/personalfinance";
     private static String userName = "root";
-    private static String password = "Pramati@123";
+    private static String password = "wm9qm75Q1@0b";
 
     private static volatile Connection connection;
 

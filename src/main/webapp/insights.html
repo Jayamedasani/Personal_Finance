@@ -8,21 +8,25 @@
     <link rel="stylesheet" href="styles/insight.css">
     <script src="script/insights.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body onload="getInsight()">
 <nav class="navbar navbar-expand-lg shadow bg-white" id="navmain">
     <div class="container-fluid row">
-        <a class="navbar-brand col-4 fs-3" href="index.html">
-            <img class="brandlogo" src="images/brand.png" alt="brandlogo" />Wallet
+        <a class="navbar-brand col-4 fs-3 " href="index.html">
+            <img class="brandlogo " src="images/brand.png" alt="brandlogo" />Wallet
         </a>
-        <div class="col-8 d-flex text-end">
-            <h3 class="">Jayalakshmi</h3>
-            <button type="button" class="btn btn-transparent" onclick="getMonthlyReport()"><img class="" id="userimg" src="images/jaya.jpg" alt="userimage"/></button>
+        <div class="col-8 ">
+            <div class="d-flex float-end">
+            <h3 class="m-auto">Jayalakshmi</h3>
+            <button type="button" class="btn btn-transparent" onclick="getReport()"><img class="" id="userimg" src="images/jaya.jpg" alt="userimage"/></button>
+        </div>
         </div>
     </div>
 </nav>
-<div class=" shadow bg-white rounded bg-transparent py-3" id="bodymain">
+<div class=" shadow bg-white rounded bg-transparent py-3 position-relative" id="bodymain">
     <div class="row ps-2 mx-2">
         <div class="col-2 ps-1 bg-transparent" id="sidebarmain">
             <nav class="nav flex-column fs-5">
@@ -40,19 +44,34 @@
         </div>
         <div class="col-10">
             <div class="p-5 mx-5 shadow p-3 mb-5 me-3 bg-body rounded">
-                <form>
-                    <div class=" forminsights text-center">
-                        <label for="retiredYear" class="form-label pb-5">Year:</label>
-                        <input type="number" class="from-control" id="retiredYear" placeholder="Retirement Year"/>
-                        <span><button class="btn btn-sm btn-outline-primary" onclick="getInsight()" >View Report</button></span>
+                <h2 class="text-warning fw-bold text-center pb-5">Retirement Planning</h2>
+                <!--<form>-->
+                    <div class=" forminsights text-center mb-5">
+                        <div class="d-flex mb-3">
+                        <label for="retiredYear" class="form-label me-1">Year:</label>
+                        <input type="number" class="form-control me-5" id="retiredYear" placeholder="Retirement Year"/>
+
+                            <label for="retirementAmount" class="form-label me-1">Amount:</label>
+                        <input type="number" class="form-control me-2" id="retirementAmount" placeholder="Enter Estimated Amount"/>
+                        </div>
+                            <button class="btn btn-sm btn-outline-primary" onclick="getInsight()" >View Report</button>
                     </div>
-                </form>
-                <canvas id="myChartInsights" style="width:100%;max-width:600px"></canvas>
+                <!--</form>-->
+                <canvas id="myChartInsights" class="m-auto" style="width:100%;max-width:600px"></canvas>
             </div>
 
         </div>
     </div>
 </div>
+</div>
+<div class="toast position-absolute top-0 end-0 text-success">
+    <div class="toast-header ">
+        <strong class="me-auto">EMAIL STATUS</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+        <p><span class='bi bi-check2-circle'></span>Email sent successfully</p>
+    </div>
 </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script type="text/javascript"

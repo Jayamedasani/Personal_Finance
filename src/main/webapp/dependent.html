@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles/dependent.css">
     <script src="script/dependent.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body onload="getDependents()">
@@ -17,13 +19,15 @@
         <a class="navbar-brand col-4 fs-3" href="index.html">
             <img class="brandlogo" src="images/brand.png" alt="brandlogo" />Wallet
         </a>
-        <div class="col-8 d-flex text-end">
-            <h3 class="">Jayalakshmi</h3>
-            <button type="button" class="btn btn-transparent" onclick="getMonthlyReport()"><img class="" id="userimg" src="images/jaya.jpg" alt="userimage"/></button>
+        <div class="col-8">
+            <div class="d-flex float-end">
+            <h3 class="m-auto">Jayalakshmi</h3>
+            <button type="button" class="btn btn-transparent" onclick="getReport()"><img class="" id="userimg" src="images/jaya.jpg" alt="userimage"/></button>
+        </div>
         </div>
     </div>
 </nav>
-<div class=" shadow  bg-white rounded bg-transparent" id="bodymain">
+<div class=" shadow  bg-white rounded bg-transparent position-relative" id="bodymain">
     <div class="row ps-2 mx-2">
         <div class="col-2 ps-1 bg-transparent" id="sidebarmain">
             <nav class="nav flex-column fs-5">
@@ -40,13 +44,13 @@
             </nav>
         </div>
         <div class="col-10">
-            <div id="formmain" class="m-3 shadow p-3 mb-5 me-3 bg-body rounded" style="display:none ">
+            <div id="formmain" class="m-3 shadow p-3 mb-5 me-3 bg-body rounded " style="display:none ">
                 <form id="formDependent" >
                     <div class="mb-3">
                         <label for="dependentName" class="form-label pe-3">Name:</label>
                         <input type="text" class="form-control" id="dependentName" placeholder="Enter Dependent Name">
                     </div>
-                    <div class="mb-3 form-check">
+                    <div class="mb-3">
                         <label class="form-label pe-3" for="dependentRelation">Relation:</label>
                         <input type="text" class="form-control" id="dependentRelation"
                                placeholder="Enter Dependent Relation">
@@ -54,16 +58,16 @@
                     </div>
                     <div class="mb-3">
                         <label for="dependentEmail" class="form-label pe-3">EMail:</label>
-                        <input type="text" class="form-control" id="dependentEmail"
+                        <input type="email" class="form-control" id="dependentEmail"
                             placeholder="Enter Dependent Email">
                     </div>
-                    <div class="mb-3 form-check">
+                    <div class="mb-3">
                         <label class="form-label pe-3" for="dependentphn">Mobile No:</label>
                         <input type="text" class="form-control" id="dependentphn"
                             placeholder="Enter Dependent Mobile No">
 
                     </div>
-                    <div class="mb-3 form-check">
+                    <div class="mb-3">
                         <label class="form-label pe-3" for="dependentDOB">DOB:</label>
                         <input type="text" class="form-control" id="dependentDOB"
                                placeholder="Enter Dependent DOB">
@@ -76,7 +80,7 @@
             <div id="main" class="m-3 p-3 shadow p-3 mb-5 me-3 bg-body rounded">
                 <div class="row">
                     <div class="col-6">
-                        <h4>Dependent List</h4>
+                        <h4 class="fs-3 fw-bold">Dependent List</h4>
                     </div>
                     <div class="col-6 text-end bg-white">
                         <button type="button" class="btn btn-md btn-outline-primary" onclick="addDependent()">Add Dependent</button>
@@ -84,7 +88,7 @@
                 </div>
                 <div class="table-responsive py-5 ">
 
-                    <table class="table table-hover ">
+                    <table class="table table-hover table-striped">
 
                         <thead class="">
                         <tr>
@@ -107,6 +111,15 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="toast position-absolute top-0 end-0 text-success">
+    <div class="toast-header ">
+        <strong class="me-auto">EMAIL STATUS</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+        <p><span class='bi bi-check2-circle'></span>Email sent successfully</p>
     </div>
 </div>
 <script type="text/javascript"

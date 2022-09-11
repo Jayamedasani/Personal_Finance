@@ -23,8 +23,8 @@ public class InvestmentDAO implements InvestmentOperations {
             statement.setInt(3,investment.getAmount());
             statement.setInt(4,investment.getYear());
             statement.setString(5,investment.getStartDate());
-            int result=statement.executeUpdate();
-            System.out.println(result+"rows effected");
+            statement.execute();
+            System.out.println("rows effected");
         } catch (SQLException e) {
             System.out.println("can't add investment");
             e.printStackTrace();
