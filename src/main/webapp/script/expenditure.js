@@ -1,5 +1,8 @@
+const hostname="localhost";
+const warname="Personal_Finance";
 function getExpenditure(){
-    const url="http://localhost:8080/Personal_Finance/expenditures";
+    const url=`http://${hostname}:8080/${warname}/expenditures`;
+    console.log(url);
     async function getapi(url) {
         const response = await fetch(url);
         var data = await response.json();
@@ -12,10 +15,10 @@ function getExpenditure(){
                 for(let i=0;i<data.length;i++){
                     let content = `
                                   <tr  scope="row" >
-                                  <td > ${i+1}   </td>
+                                  <td > <span>#</span>${i+1}   </td>
                                   <td > ${data[i]['name']}   </td>
                                   <td > ${data[i]['category']}   </td>
-                                  <td > ${data[i]['amount']}   </td>
+                                  <td > <i class="fa fa-rupee"></i>${data[i]['amount']}   </td>
                                   <td > ${data[i]['processedDate']}   </td>
                                   <td > ${data[i]['processedTime']}   </td>
                                   <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateExpenditure(${data[i]})"></span> </td>
@@ -27,47 +30,30 @@ function getExpenditure(){
                     `
                         tdBody.innerHTML += content;
                 }
-        /*var divExpenditure=document.createElement("div");
-        var main=document.getElementById("main");
-        var span=document.createElement("span");
-        var p=document.createElement("p");
-        var h5=document.createElement("h5");
-        var h4=document.createElement("h4");
-        main.appendChild(divExpenditure);
-        
-        for (let i = 0; i < data.length; i++) {
-            divExpenditure = document.createElement("div");
-            main.appendChild(divExpenditure);
-            span = document.createElement("span");
-            span.className = 'bi bi-arrow-up-right-circle-fill';
-            divExpenditure.appendChild(span);
-            p = document.createElement("p");
-            p.innerHTML = data[i]['name'];
-            divExpenditure.appendChild(p);
-            h5 = document.createElement("h5");
-            h5.innerHTML = data[i]['category'];
-            divExpenditure.appendChild(h5);
-            h4 = document.createElement("h4");
-            h4.innerHTML = data[i]['amount'];
-            divExpenditure.appendChild(h4);
-            h6 = document.createElement("h6");
-            h6.innerHTML = data[i]['processedDate'];
-            divExpenditure.appendChild(h6);
-            h6 = document.createElement("h6");
-            h6.innerHTML = data[i]['processedTime'];
-            divExpenditure.appendChild(h6);
+                var x=document.getElementById("expenditureCategory");
+                                    const expenditureurl = `http://${hostname}:8080/${warname}/expenditurecategories`;
+                                    async function getselect(url) {
+                                            const response = await fetch(url);
+                                            var data = await response.json();
+                                            console.log(data);
+                                            var option=document.createElement("option");
+                                            for(let i=0;i<data.length;i++){
+                                            console.log("loop");
+                                                option=document.createElement("option");
+                                                option.innerHTML=data[i]['name'];
+                                                x.appendChild(option);
+                                            }
 
-        }*/
-        
+                                     }
+                                    getselect(expenditureurl);
     }
-    
 }
 function addExpenditure() {
     document.getElementById('formmain').style.display = 'block';
     document.getElementById('datamain').style.display = 'none';
 }
 function submitExpenditure() {
-debugger;
+
 console.log("called");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -106,9 +92,11 @@ console.log("called");
       redirect: 'follow'
     };
 //debugger;
-    fetch("http://localhost:8080/Personal_Finance/expenditures", requestOptions)
+    fetch(`http://${hostname}:8080/${warname}/expenditures`, requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => {
+           getToast();
+       })
       .catch(error => console.log('error', error));
  }
  /*function deleteExpenditure(data){
@@ -138,7 +126,7 @@ console.log("called");
  }
 */
 function getMonthlyReport(){
-const url = "http://localhost:8080/Personal_Finance/savings";
+const url = `http://${hostname}:8080/${warname}/savings`;
 var message;
         async function getapi(url) {
             const response = await fetch(url);
@@ -153,8 +141,8 @@ var message;
             message+=" Current Month Balance: ";
             message+= data3 ;
             console.log(message);
-            emailjs.send("service_35nruh8","template_o17xhco",{
-                message: message });
+            emailjs.send("service_35nruh8","template_fpfaqxe",{
+                            message: message });
                 getToast();
         }
         getapi(url);

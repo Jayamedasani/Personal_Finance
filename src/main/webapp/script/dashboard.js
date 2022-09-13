@@ -1,3 +1,5 @@
+const hostname="3.19.32.109";
+const warname="jayapersonalfinanceapp";
 window.onload=function(){
 getDashboard();
 }
@@ -6,7 +8,7 @@ getExpenditureDashboard();
 getIncomeDashboard();
 function getExpenditureDashboard(){
 
-    const url="http://localhost:8080/Personal_Finance/dashboards?month=09&year=2022&name=expenditure";
+    const url=`http://${hostname}:8080/${warname}/dashboards?month=09&year=2022&name=expenditure`;
 
         async function getapi(url) {
             const response = await fetch(url);
@@ -49,7 +51,8 @@ function getExpenditureDashboard(){
     }
 }
 async function getIncomeDashboard(){
-    const url="http://localhost:8080/Personal_Finance/dashboards?month=09&year=2022&name=income";
+
+    const url=`http://${hostname}:8080/${warname}/dashboards?month=09&year=2022&name=income`;
         async function getapi(url) {
                     const response = await fetch(url);
                     var data = await response.json();
@@ -95,7 +98,7 @@ async function getIncomeDashboard(){
 }
 }
 function getMonthlyReport(){
-const url = "http://localhost:8080/Personal_Finance/savings";
+const url = `http://${hostname}:8080/${warname}/savings`;
 var message;
         async function getapi(url) {
             const response = await fetch(url);
@@ -110,8 +113,8 @@ var message;
             message+=" Current Month Balance: ";
             message+= data3 ;
             console.log(message);
-            emailjs.send("service_35nruh8","template_o17xhco",{
-                message: message });
+            emailjs.send("service_35nruh8","template_fpfaqxe",{
+                            message: message });
                 getToast();
         }
         getapi(url);

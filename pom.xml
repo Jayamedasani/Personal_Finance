@@ -33,6 +33,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>income</finalName>
+        <finalName>jayapersonalfinanceapp</finalName>
     </build>
 </project>
