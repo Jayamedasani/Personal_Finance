@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getDependents(){
     const url=`http://${hostname}:8080/${warname}/dependents`;
     async function getapi(url) {
@@ -12,6 +14,8 @@ function getDependents(){
     function show(data){
         const tdBody = document.getElementById('tableDependentData');
                 for(let i=0;i<data.length;i++){
+                let currentMail=(data[i]['email']).toString();
+                console.log(currentMail);
                     let content = `
                                   <tr  scope="row" >
                                   <td > <span>#</span>${i+1}   </td>
@@ -20,9 +24,9 @@ function getDependents(){
                                   <td > ${data[i]['email']}   </td>
                                   <td > ${data[i]['dob']}   </td>
                                   <td > ${data[i]['phnno']}   </td>
-                                  <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateIncome(${data[i]})"></span> </td>
+
                                   <td>
-                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncome(${data[i]})"></span>
+                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteDependent(${currentMail})"></span>
                                   </td>
                                   </tr>`
                                   console.log(content);
@@ -60,6 +64,25 @@ console.log(raw);
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 }
+/*function deleteDependent(email){
+var raw = "";
+
+var requestOptions = {
+  method: 'DELETE',
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch(`http://${hostname}:8080/${warname}/dependents?userEmail=${email}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+var res=1;
+if(res==1){
+getToast();
+}
+}*/
+
 function getMonthlyReport(){
 const url = `http://${hostname}:8080/${warname}/savings`;
 var message;

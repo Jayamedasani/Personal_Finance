@@ -22,7 +22,7 @@ public class Main {
         BalanceDAO balanceDAO=new BalanceDAO();
         map=balanceDAO.getMonthMaxExpenditure(2022);
         System.out.println(map);*/
-        InvestmentDAO investmentDAO=new InvestmentDAO();
-        investmentDAO.addInvestment(new Investment("vjwland","stocks","2016-03-08",10000,2050));
+        ExpenditureDAO expenditureDAO=new ExpenditureDAO();
+        expenditureDAO.deleteExpenditure(19);
     }
 }

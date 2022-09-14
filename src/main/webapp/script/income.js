@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getIncome(){
     const url = `http://${hostname}:8080/${warname}/incomes`;
     async function getapi(url) {
@@ -23,7 +25,7 @@ function getIncome(){
                           <td > <i class="fa fa-rupee"></i>${data[i]['amount']}   </td>
                           <td > ${data[i]['processedDate']}   </td>
                           <td > ${data[i]['processedTime']}   </td>
-                          <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateIncome(${data[i]})"></span> </td>
+
                           <td>
                           <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncome(${currentValue})"></span>
                           </td>
@@ -80,14 +82,15 @@ function submitIncome() {
       body: raw,
       redirect: 'follow'
     };
+//   debugger;
 
     fetch(`http://${hostname}:8080/${warname}/incomes`, requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
+      .then(response => response.text)
+      .then(result =>
+      console.log(result)
+       )
       .catch(error => console.log('error', error));
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
 }
 
 function deleteIncome(data){
@@ -98,11 +101,15 @@ function deleteIncome(data){
       body: raw,
       redirect: 'follow'
     };
+    debugger;
     fetch(`http://${hostname}:8080/${warname}/incomes?id=${data}`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
-
+      let res=1;
+      if(res==1){
+       getToast();
+    }
 }
 function getMonthlyReport(){
 const url = `http://${hostname}:8080/${warname}/savings`;

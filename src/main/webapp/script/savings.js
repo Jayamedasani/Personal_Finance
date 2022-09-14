@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 async function getSavings() {
 var url;
 var currentYear=document.getElementById("savingYear").value;

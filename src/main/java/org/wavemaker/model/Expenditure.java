@@ -4,15 +4,16 @@ import java.util.Objects;
 
 public class Expenditure {
     private String name,category;
-    private int amount;
+    private int id,amount;
     private String processedDate,processedTime;
 
     public Expenditure() {
     }
 
-    public Expenditure(String name, String category, int amount, String processedDate, String processedTime) {
+    public Expenditure(int id, String name, String category, int amount, String processedDate, String processedTime) {
         this.name = name;
         this.category = category;
+        this.id = id;
         this.amount = amount;
         this.processedDate = processedDate;
         this.processedTime = processedTime;
@@ -32,6 +33,14 @@ public class Expenditure {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAmount() {
@@ -63,12 +72,12 @@ public class Expenditure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expenditure that = (Expenditure) o;
-        return amount == that.amount && Objects.equals(name, that.name) && Objects.equals(category, that.category) && Objects.equals(processedDate, that.processedDate) && Objects.equals(processedTime, that.processedTime);
+        return id == that.id && amount == that.amount && Objects.equals(name, that.name) && Objects.equals(category, that.category) && Objects.equals(processedDate, that.processedDate) && Objects.equals(processedTime, that.processedTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, category, amount, processedDate, processedTime);
+        return Objects.hash(name, category, id, amount, processedDate, processedTime);
     }
 
     @Override
@@ -76,6 +85,7 @@ public class Expenditure {
         return "Expenditure{" +
                 "name='" + name + '\'' +
                 ", category='" + category + '\'' +
+                ", id=" + id +
                 ", amount=" + amount +
                 ", processedDate='" + processedDate + '\'' +
                 ", processedTime='" + processedTime + '\'' +

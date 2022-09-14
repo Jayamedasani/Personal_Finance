@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/category.css">
+    <link rel="icon" type="image/jpg" href="images/favicon.ico">
     <script src="script/categories.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -62,9 +63,9 @@
                         <label for="incomeCategoryName" class="form-label pe-3">Name:</label>
                         <input type="text" class="form-control" id="incomeCategoryName" placeholder="Enter Category " required>
                     </div>
-                        <div class="d-flex">
-                    <button type="submit" class="btn btn-primary me-5" onclick="submitIncomeCategory()"><span class="bi bi-plus"></span>Add</button>
-                            <button type="submit" class="btn btn-outline-primary" onclick="location.href='category.html'">Cancel</button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-outline-primary me-3" onclick="location.href='category.html'">Cancel</button>
+                            <button type="submit" class="btn btn-primary " onclick="submitIncomeCategory()"><span class="bi bi-plus"></span>Add</button>
                         </div>
                     </form>
                 </div>
@@ -75,9 +76,10 @@
                             <label for="expenditureCategoryName" class="form-label pe-3">Name:</label>
                             <input type="text" class="form-control" id="expenditureCategoryName" placeholder="Enter Category Name" required>
                         </div>
-                        <div class="d-flex">
-                        <button type="submit" class="btn btn-primary me-5" onclick="submitExpenditureCategory()"><span class="bi bi-plus"></span>Add</button>
-                        <button type="submit" class="btn btn-outline-primary" onclick="location.href='category.html'">Cancel</button>
+                        <div class="text-end">
+
+                        <button type="submit" class="btn btn-outline-primary me-3" onclick="location.href='category.html'">Cancel</button>
+                            <button type="submit" class="btn btn-primary " onclick="submitExpenditureCategory()"><span class="bi bi-plus"></span>Add</button>
                         </div>
                     </form>
                 </div>
@@ -86,18 +88,24 @@
                   <div class="col-6"><h2 class="fw-bold ps-3 fs-3 ">Income Categories</h2></div>
                   <div class="col-6 text-end pe-3"><button type="button" class="col-6 btn btn-lg btn-outline-primary" onclick="addIncomeCategory()">Add Category</button></div>
                   </div>
-                     <div class="table-responsive py-3 ">
-                      <table class="table table-hover table-striped">
-                          <thead class="">
-                          <tr>
-                              <th scope="col">S.No</th>
-                              <th scope="col">Category Name</th>
-                              <th scope="col">Disable</th>
-                          </tr>
-                          </thead>
-                          <tbody id="tableIncomeCategory" >
-                          </tbody>
-                      </table>
+                  <div class="row">
+                      <div class="col-2"></div>
+                      <div class="col-8 shadow p-3 mb-5 me-3 bg-body rounded">
+                          <div class="table-responsive  py-3 ">
+                              <table class="table table-hover ">
+                                  <thead class="">
+                                  <tr>
+                                      <th scope="col">S.No</th>
+                                      <th scope="col">Category Name</th>
+                                      <!--<th scope="col">Disable</th>-->
+                                  </tr>
+                                  </thead>
+                                  <tbody id="tableIncomeCategory" >
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col-2"></div>
                   </div>
               </div>
                 <div id="expenditurecategory" class="container tab-pane fade row py-5 shadow p-3 mb-5 me-3 bg-body rounded">
@@ -105,19 +113,24 @@
                     <div class="col-6"><h2 class=" fw-bold ps-3 fs-3 ">Expenditure Categories</h2></div>
                     <div class="col-6 text-end pe-3"><button type="button" class="col-6 btn btn-lg btn-outline-primary" onclick="addExpenditureCategory()">Add Category</button></div>
                         </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 shadow p-3 mb-5 me-3 bg-body rounded">
                     <div class="table-responsive  py-3 ">
-                        <table class="table table-hover table-striped ">
+                        <table class="table table-hover ">
                             <thead class="">
                             <tr>
                                 <th scope="col">S.No</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">Disable</th>
+                                <!--<th scope="col">Disable</th>-->
                             </tr>
                             </thead>
                             <tbody id="tableExpenditureCategory" >
                             </tbody>
                         </table>
                     </div>
+                        </div>
+                        <div class="col-2"></div>
                 </div>
 <!-- <button class="btn btn-lg btn-outline-primary" onclick="getCategories()">getCategories</button> -->
    </div>
@@ -125,9 +138,9 @@
     </div>
     </div>
 </div>
-<div id="toast" class="toast position-absolute bottom-0 end-0 bg-success">
+<div id="toast" class="toast position-absolute bottom-0 end-0 bg-success" style="display:'none';">
     <div class="toast-header ">
-        <strong class="me-auto text-warning">ACTION STATUS</strong>
+        <strong class="me-auto text-dark">ACTION STATUS</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
     </div>
     <div class="toast-body text-white">

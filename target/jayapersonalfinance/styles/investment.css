@@ -1,0 +1,56 @@
+.brandlogo{
+    width:50px;
+    height:50px;
+}
+body{
+    background-image: url("../images/bgnew1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-size:contain;*/
+}
+#bodymain{
+  margin:50px;
+  padding:20px;
+  border-radius:10px;
+  font-family:"AirbnbCerealMedium";
+  /*color:#6e6f7d;*/
+
+}
+#navmain{
+    border-radius: 10px;
+        margin: 50px;
+      font-family:"AirbnbCerealMedium";
+      /*color:#6e6f7d;*/
+}
+#navmain a{
+/*color:#6e6f7d;*/
+}
+#sidebarmain{
+border-right:1px solid #6e6f7d;
+}
+#sidebarmain nav a{
+color:black;
+}
+#sidebarmain nav a:hover{
+    background:white;
+    border:5px;
+    color:#2d8bfe;
+    border-radius:10px;
+}
+.active{
+background:white;
+border:5px;
+color:#2d8bfe;
+border-radius:10px;
+}
+#userimg{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+#logo{
+    /*color:#6e6f7d;*/
+    font-size: large;
+    font-weight: bold;
+}

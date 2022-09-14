@@ -33,8 +33,8 @@ public class ExpenditureServlet extends HttpServlet {
     }
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-        Expenditure expenditure=objectMapper.readValue(request.getReader(),Expenditure.class);
-        expenditureManager.deleteExpenditure(expenditure);
+        int id=Integer.parseInt(request.getParameter("id"));
+        expenditureManager.deleteExpenditure(id);
     }
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{

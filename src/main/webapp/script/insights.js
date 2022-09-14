@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getInsight(){
 var today = new Date();
 var currentYear=today.getFullYear();

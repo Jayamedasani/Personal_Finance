@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getCategories() {
     const expenditureurl = `http://${hostname}:8080/${warname}/expenditurecategories`;
     const incomeurl = `http://${hostname}:8080/${warname}/incomecategories`;
@@ -20,9 +22,6 @@ function getCategories() {
                                                                  <tr  scope="row" >
                                                                  <td > <span>#</span>${i+1}   </td>
                                                                  <td > ${data[i]['name']}   </td>
-                                                                 <td>
-                                                                 <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteIncomeCategory(${data[i]})"></span>
-                                                                 </td>
                                                                  </tr>`
                                                                  console.log(content);
                                                        tdBody.innerHTML += content;
@@ -50,9 +49,6 @@ function getCategories() {
                                                   <tr  scope="row" >
                                                   <td > <span>#</span>${i+1}   </td>
                                                   <td > ${data[i]['name']}   </td>
-                                                  <td>
-                                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteExpenditureCategory(${data[i]})"></span>
-                                                  </td>
                                                   </tr>`
                                                   console.log(content);
                                         tdBody.innerHTML += content;

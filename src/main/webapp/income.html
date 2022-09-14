@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/income.css">
+    <link rel="icon" type="image/jpg" href="images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -65,11 +66,11 @@
                                        placeholder="Enter Income Amount" required>
 
                             </div>
-                            <div class="d-flex">
-                            <button type="submit" class="btn btn-primary me-5" onclick="submitIncome()"><span class="bi bi-plus"></span>Add</button>
-                            <button type="submit" class="btn btn-outline-primary" onclick="location.href='income.html'">Cancel</button>
+                            <div class="text-end">
+                            <button type="submit" class="btn btn-outline-primary me-3" onclick="location.href='income.html'">Cancel</button>
+                                <button type="submit" class="btn btn-primary " onclick="submitIncome()"><span class="bi bi-plus"></span>Add</button>
                             </div>
-                        </form>
+                       </form>
                     </div>
                         <div id="datamain">
                 <div class="row bg-white py-3">
@@ -92,7 +93,7 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Processed Date</th>
                             <th scope="col">Processed Time</th>
-                            <th scope="col">Edit</th>
+                            <!--<th scope="col">Edit</th>-->
                             <th scope="col">Delete</th>
                         </tr>
                         </thead>
@@ -109,18 +110,19 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
-<div id="toast" class="toast position-absolute bottom-0 end-0 bg-success">
-    <div class="toast-header ">
-        <strong class="me-auto text-warning">ACTION STATUS</strong>
+</div>
+</div>
+<div id="toaster" class="toast bg-success position-absolute bottom-0 end-0" style="position:'none';">
+    <div class="toast-header">
+        <strong class="me-auto text-dark">ACTION STATUS</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
     </div>
     <div class="toast-body text-white">
         <p><span class='bi bi-check2-circle'></span>Action Performed Successfully</p>
     </div>
 </div>
-<div id="snackbar">Some text some message..</div>
+<div id="snackbar" class="position-absolute botton-0 end-0 bg-success text-white">Some text some message..</div>
 <script src="script/income.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

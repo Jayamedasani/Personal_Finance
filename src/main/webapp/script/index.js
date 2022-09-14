@@ -1,5 +1,5 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
 function getDetails(){
     let incomeBox=document.getElementById("incomeamount");
     let expenditureBox=document.getElementById("expenditureamount");

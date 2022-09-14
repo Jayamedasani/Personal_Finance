@@ -54,3 +54,6 @@ border-radius:50%;
     font-size: large;
     font-weight: bold;
 }
+.table {
+   table-layout: fixed;
+ }

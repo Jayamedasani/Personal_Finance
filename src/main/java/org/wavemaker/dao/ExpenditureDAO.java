@@ -31,13 +31,12 @@ public class ExpenditureDAO implements ExpenditureOperations {
         }
     }
     @Override
-    public void deleteExpenditure(Expenditure expenditure){
+    public void deleteExpenditure(int id){
         Connection connection=MySQLConnection.getConnection();
-        String sql="delete from expenditure where processed_date=? and processed_time=?";
+        String sql="delete from expenditure where id=?";
         try{
             PreparedStatement statement= connection.prepareStatement(sql);
-            statement.setString(1,expenditure.getProcessedDate());
-            statement.setString(2,expenditure.getProcessedTime());
+            statement.setInt(1,id);
             int result= statement.executeUpdate();
             System.out.println(result+"rows effected");
         } catch (SQLException e) {
@@ -72,12 +71,13 @@ public class ExpenditureDAO implements ExpenditureOperations {
             PreparedStatement statement= connection.prepareStatement(sql);
             ResultSet resultSet =statement.executeQuery();
             while(resultSet.next()){
+                int id= resultSet.getInt("id");
                 String name= resultSet.getString("name");
                 String category=resultSet.getString("category");
                 int amount=resultSet.getInt("amount");
                 String processedDate=resultSet.getString("processed_date");
                 String processedTime=resultSet.getString("processed_time");
-                expenditureList.add(new Expenditure(name,category,amount,processedDate,processedTime));
+                expenditureList.add(new Expenditure(id,name,category,amount,processedDate,processedTime));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -95,12 +95,13 @@ public class ExpenditureDAO implements ExpenditureOperations {
             statement.setString(1,expenditureCategory);
             ResultSet resultSet=statement.executeQuery();
             while(resultSet.next()){
+                int id= resultSet.getInt("id");
                 String name= resultSet.getString("name");
                 String category=resultSet.getString("category");
                 int amount=resultSet.getInt("amount");
                 String processedDate=resultSet.getString("processed_date");
                 String processedTime=resultSet.getString("processed_time");
-                searchExpenditureList.add(new Expenditure(name,category,amount,processedDate,processedTime));
+                searchExpenditureList.add(new Expenditure(id,name,category,amount,processedDate,processedTime));
             }
         } catch (SQLException e) {
             System.out.println("Can't search");

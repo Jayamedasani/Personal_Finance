@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getExpenditure(){
     const url=`http://${hostname}:8080/${warname}/expenditures`;
     console.log(url);
@@ -13,6 +15,8 @@ function getExpenditure(){
     function show(data){
         const tdBody = document.getElementById('tableExpenditureDataContainer');
                 for(let i=0;i<data.length;i++){
+                let currentValue=data[i]['id'];
+
                     let content = `
                                   <tr  scope="row" >
                                   <td > <span>#</span>${i+1}   </td>
@@ -21,9 +25,9 @@ function getExpenditure(){
                                   <td > <i class="fa fa-rupee"></i>${data[i]['amount']}   </td>
                                   <td > ${data[i]['processedDate']}   </td>
                                   <td > ${data[i]['processedTime']}   </td>
-                                  <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateExpenditure(${data[i]})"></span> </td>
+
                                   <td>
-                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteExpediture(${data[i]})"></span>
+                                  <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteExpenditure(${currentValue})"></span>
                                   </td>
                                   </tr>
 
@@ -92,25 +96,22 @@ console.log("called");
       redirect: 'follow'
     };
 //debugger;
+
     fetch(`http://${hostname}:8080/${warname}/expenditures`, requestOptions)
       .then(response => response.text())
-      .then(result => {
-           getToast();
-       })
+      .then(result => console.log(result))
       .catch(error => console.log('error', error));
+      var res=1;
+      if(res==1){
+        getToast();
+      }
  }
- /*function deleteExpenditure(data){
+ function deleteExpenditure(data){
     console.log(data);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-      "name": ${data['name']},
-      "category": ${data['category']},
-      "amount": ${data['amount']},
-      "processedDate": ${data['processedDate']},
-      "processedTime": ${data['processedTime']}
-    });
+    var raw = "";
 
     var requestOptions = {
       method: 'DELETE',
@@ -119,12 +120,16 @@ console.log("called");
       redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/Personal_Finance/expenditures", requestOptions)
+    fetch(`http://${hostname}:8080/${warname}/expenditures?id=${data}`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+      let res=1;
+            if(res==1){
+             getToast();
+          }
  }
-*/
+
 function getMonthlyReport(){
 const url = `http://${hostname}:8080/${warname}/savings`;
 var message;

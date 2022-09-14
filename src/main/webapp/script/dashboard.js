@@ -1,5 +1,7 @@
 const hostname="3.19.32.109";
-const warname="jayapersonalfinanceapp";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 window.onload=function(){
 getDashboard();
 }

@@ -1,5 +1,7 @@
-const hostname="localhost";
-const warname="Personal_Finance";
+const hostname="3.19.32.109";
+const warname="jayapersonalfinance";
+/*const hostname="localhost";
+const warname="Personal_Finance";*/
 function getInvestment(){
     const url=`http://${hostname}:8080/${warname}/investments`;
     async function getapi(url) {
@@ -20,7 +22,7 @@ function getInvestment(){
                                       <td > <i class="fa fa-rupee"></i>${data[i]['amount']}   </td>
                                       <td > ${data[i]['startDate']}   </td>
                                       <td > ${data[i]['year']}   </td>
-                                      <td > <span class="bi bi-pencil" aria-hidden="true" onclick="updateInvestment(${data[i]})"></span> </td>
+
                                       <td>
                                       <span class="bi bi-trash-fill" aria-hidden="true" onclick="deleteInvestment(${data[i]})"></span>
                                       </td>
